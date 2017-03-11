@@ -1,12 +1,13 @@
 plugins {
     id 'java'
-    id "info.solidsoft.pitest" version "1.1.11"
+    id 'info.solidsoft.pitest' version '1.1.11'
 }
 
 group 'org.skaggsm'
 version '1.0.0-SNAPSHOT'
 
-//noinspection GroovyUnusedAssignment Is still used by Java Gradle plugin
+//It is still used by Java Gradle plugin
+//noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.8
 
 repositories {
@@ -18,3 +19,6 @@ dependencies {
     //Testing framework is jUnit 4.11
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+test.dependsOn 'pitest' //Merge normal testing and mutation testing
+//build.dependsOn 'test' //Keep compilation and testing seperate for now
