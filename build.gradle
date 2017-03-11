@@ -1,8 +1,12 @@
+plugins {
+    id 'java'
+    id "info.solidsoft.pitest" version "1.1.11"
+}
+
 group 'org.skaggsm'
 version '1.0.0-SNAPSHOT'
 
-apply plugin: 'java'
-
+//noinspection GroovyUnusedAssignment Is still used by Java Gradle plugin
 sourceCompatibility = 1.8
 
 repositories {
@@ -11,11 +15,6 @@ repositories {
 
 dependencies {
 
-    //Mutation testing plugin
-    classpath group: 'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: '1.1.11'
-
     //Testing framework is jUnit 4.11
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
-
-apply plugin: "info.solidsoft.pitest"
