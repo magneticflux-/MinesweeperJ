@@ -31,6 +31,11 @@ public class SomeExampleObjectTest {
 
     @Test
     public void whenALessThanBReturnTrue() throws Exception {
-        assertFalse(someExampleObject.compareIntegers(4, 12));
+        assertFalse(someExampleObject.compareIntegers(-3, 4));
+    }
+
+    @Test
+    public void whenAEqualToBReturnFalse() throws Exception {
+        assertFalse(someExampleObject.compareIntegers(7, 7));
     }
 }
