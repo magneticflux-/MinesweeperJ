@@ -26,5 +26,4 @@ pitest {
     mutationThreshold = 0
 }
 
-test.dependsOn 'pitest' //Merge normal testing and mutation testing
-//build.dependsOn 'test' //Keep compilation and testing separate for now
+check.dependsOn 'pitest' //Perform mutation testing with checks
