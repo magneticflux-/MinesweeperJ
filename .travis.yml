@@ -1,5 +1,9 @@
 jdk: oraclejdk8
 
+addons:
+  code_climate:
+    repo_token: 4dde844195f0faa2a02225418ef5411075868a4501f7fc47ddc9e54babe65fe1
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
