@@ -24,6 +24,7 @@ pitest {
     threads = Runtime.getRuntime().availableProcessors()
     maxMutationsPerClass = 0
     mutationThreshold = 0
+    maxSurviving = 0
     verbose = true
 }
 
