@@ -22,10 +22,7 @@ dependencies {
 
 pitest {
     threads = Runtime.getRuntime().availableProcessors()
-    maxMutationsPerClass = 0
-    mutationThreshold = 0
-    maxSurviving = 0
-    verbose = true
+    mutationThreshold = 90
 }
 
 check.dependsOn 'pitest' //Perform mutation testing with checks
