@@ -7,7 +7,7 @@ package org.skaggsm.minesweeperj.board;
  * @param <S> The type of the object that defines the publicly visible game state
  * @author Mitchell Skaggs
  */
-public interface Game<M, S> {
+public interface Game<M extends Move, S> {
     /**
      * Makes a move on the game board using the provided move data
      *
