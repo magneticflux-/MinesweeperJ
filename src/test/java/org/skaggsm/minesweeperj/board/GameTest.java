@@ -12,6 +12,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
+ * This class test the {@link Game} interface's default method {@link Game#addPlayer(Player)}.
+ *
  * @author Mitchell Skaggs
  */
 @RunWith(MockitoJUnitRunner.StrictStubs.class)
