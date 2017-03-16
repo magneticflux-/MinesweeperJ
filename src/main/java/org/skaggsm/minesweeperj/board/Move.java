@@ -1,6 +1,6 @@
 package org.skaggsm.minesweeperj.board;
 
-import org.skaggsm.minesweeperj.player.Player;
+import org.skaggsm.minesweeperj.entities.Player;
 
 /**
  * This class represents an a move by a player. It should provide data to the game about how to progress.
@@ -13,5 +13,5 @@ public interface Move {
      *
      * @return the player this move was made by
      */
-    Player getPlayer();
+    Player<? extends Move, ? extends View> getPlayer();
 }
