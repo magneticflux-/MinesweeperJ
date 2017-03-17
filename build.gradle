@@ -24,6 +24,14 @@ dependencies {
 
 }
 
+//noinspection GroovyMissingReturnStatement
+test {
+    useJUnit {
+        //noinspection GrUnresolvedAccess
+        excludeCategories 'org.skaggsm.categories.UnstableTests'
+    }
+}
+
 pitest {
     threads = Runtime.getRuntime().availableProcessors()
     mutationThreshold = 90
