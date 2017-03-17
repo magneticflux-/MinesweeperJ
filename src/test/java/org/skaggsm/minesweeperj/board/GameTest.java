@@ -2,10 +2,12 @@ package org.skaggsm.minesweeperj.board;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.entities.Player;
 
 import static org.mockito.Mockito.times;
@@ -17,6 +19,7 @@ import static org.mockito.Mockito.verify;
  * @author Mitchell Skaggs
  */
 @RunWith(MockitoJUnitRunner.StrictStubs.class)
+@Category(UnitTests.class)
 public class GameTest {
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private Game<Move, View> game;
