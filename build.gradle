@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.skaggsm'
-version '1.0.0-SNAPSHOT'
+version '0.1.0-SNAPSHOT'
 
 //It is still used by Java Gradle plugin
 //noinspection GroovyUnusedAssignment
@@ -21,7 +21,6 @@ dependencies {
 
     //Mocking framework is Mockito 2.7.17
     compile group: 'org.mockito', name: 'mockito-core', version: '2.7.17'
-
 }
 
 //noinspection GroovyMissingReturnStatement
