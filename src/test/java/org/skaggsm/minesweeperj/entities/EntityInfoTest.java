@@ -36,7 +36,7 @@ public class EntityInfoTest {
     @SuppressWarnings("unchecked")
     @BeforeClass
     public static void setup() {
-        SIMPLE_ENTITY = mock(Player.class);
+        SIMPLE_ENTITY = mock(Entity.class);
         when(SIMPLE_ENTITY.getIdentification()).thenReturn(new UUID(0, 0));
     }
 
