@@ -1,12 +1,17 @@
 package org.skaggsm.minesweeperj.board;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.Rule;
 import org.junit.experimental.categories.Category;
+import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.internal.junit.JUnitRule;
+import org.mockito.internal.util.ConsoleMockitoLogger;
+import org.mockito.junit.MockitoRule;
+import org.mockito.quality.Strictness;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.entities.Player;
 
@@ -18,23 +23,23 @@ import static org.mockito.Mockito.verify;
  *
  * @author Mitchell Skaggs
  */
-@RunWith(MockitoJUnitRunner.StrictStubs.class)
+@RunWith(Theories.class)
 @Category(UnitTests.class)
 public class GameTest {
+    @Mock
+    @DataPoint
+    public static Player<Move, View> SIMPLE_PLAYER;
+    @Rule
+    public final MockitoRule mockitoRule = new JUnitRule(new ConsoleMockitoLogger(), Strictness.STRICT_STUBS);
+
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private Game<Move, View> game;
-    @Mock
-    private Player<Move, View> player;
 
-    @Before
-    public void setUp() throws Exception {
-    }
+    @Theory
+    public void Given_AnyPlayer_When_AddPlayerCalled_Then_AddParticipantCalledAddViewerCalled(Player<Move, View> anyPlayer) throws Exception {
+        game.addPlayer(anyPlayer);
 
-    @Test
-    public void addPlayer() throws Exception {
-        game.addPlayer(player);
-
-        verify(game, times(1).description("Method \"addParticipant\" not called!")).addParticipant(player);
-        verify(game, times(1).description("Method \"addViewer\" not called!")).addViewer(player);
+        verify(game, times(1)).addParticipant(anyPlayer);
+        verify(game, times(1)).addViewer(anyPlayer);
     }
 }
