@@ -82,8 +82,12 @@ public class MinesweeperMove implements Move {
          *
          * @param row The row to set
          * @return The builder
+         * @throws IllegalArgumentException If {@code row} < 0
          */
         public Builder setRow(@Nonnegative int row) {
+            if (row < 0)
+                throw new IllegalArgumentException("'row' must be >= 0!");
+
             this.row = row;
             return this;
         }
@@ -93,8 +97,12 @@ public class MinesweeperMove implements Move {
          *
          * @param column The column to set
          * @return The builder
+         * @throws IllegalArgumentException If {@code column} < 0
          */
         public Builder setColumn(@Nonnegative int column) {
+            if (column < 0)
+                throw new IllegalArgumentException("'column' must be >= 0!");
+
             this.column = column;
             return this;
         }
@@ -105,6 +113,7 @@ public class MinesweeperMove implements Move {
          * @param row    The row to set
          * @param column The column to set
          * @return The builder
+         * @throws IllegalArgumentException If {@code row} or {@code column} are < 0
          */
         public Builder setCoordinates(@Nonnegative int row, @Nonnegative int column) {
             this.setRow(row);
