@@ -36,7 +36,7 @@ public class MinesweeperMoveTest {
     public static int[] ROWS_AND_COLUMNS = new int[]{-1, 0, 1, 2};
 
     @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    public ExpectedException exceptionRule = ExpectedException.none();
 
     @Theory
     public void Given_Defaults_When_SetCoordinatesBuildCalled_Then_AllDataMatches(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
@@ -77,7 +77,7 @@ public class MinesweeperMoveTest {
     public void Given_NegativeRowAnyColumn_When_BuildCalled_Then_ThrowIllegalArgumentException(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
         assumeThat(row, lessThan(0));
 
-        expectedException.expect(IllegalArgumentException.class);
+        exceptionRule.expect(IllegalArgumentException.class);
         new MinesweeperMove.Builder()
                 .setPlayer(anyPlayer)
                 .setMoveType(anyMoveType)
@@ -89,7 +89,7 @@ public class MinesweeperMoveTest {
     public void Given_AnyRowNegativeColumn_When_BuildCalled_Then_ThrowIllegalArgumentException(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
         assumeThat(column, lessThan(0));
 
-        expectedException.expect(IllegalArgumentException.class);
+        exceptionRule.expect(IllegalArgumentException.class);
         new MinesweeperMove.Builder()
                 .setPlayer(anyPlayer)
                 .setMoveType(anyMoveType)
@@ -102,7 +102,7 @@ public class MinesweeperMoveTest {
         assumeThat(row, greaterThanOrEqualTo(0));
         assumeThat(column, greaterThanOrEqualTo(0));
 
-        expectedException.expect(IllegalStateException.class);
+        exceptionRule.expect(IllegalStateException.class);
         new MinesweeperMove.Builder()
                 .setMoveType(anyMoveType)
                 .setCoordinates(row, column)
@@ -114,7 +114,7 @@ public class MinesweeperMoveTest {
         assumeThat(row, greaterThanOrEqualTo(0));
         assumeThat(column, greaterThanOrEqualTo(0));
 
-        expectedException.expect(IllegalStateException.class);
+        exceptionRule.expect(IllegalStateException.class);
         new MinesweeperMove.Builder()
                 .setPlayer(anyPlayer)
                 .setCoordinates(row, column)
