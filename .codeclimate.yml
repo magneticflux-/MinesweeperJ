@@ -10,6 +10,8 @@ engines:
         enabled: false
       com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck:
         enabled: false
+      exclude_paths:
+      - "src/test/java/"
   fixme:
     enabled: true
   pmd:
