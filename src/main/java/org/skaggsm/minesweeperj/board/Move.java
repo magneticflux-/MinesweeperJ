@@ -3,7 +3,8 @@ package org.skaggsm.minesweeperj.board;
 import org.skaggsm.minesweeperj.entities.Player;
 
 /**
- * This class represents an a move by a player. It should provide data to the game about how to progress.
+ * This class represents a move by a player. It should provide data to the game about how to progress.
+ * <p>Subclasses of this class should be immutable.</p>
  *
  * @author Mitchell Skaggs
  */

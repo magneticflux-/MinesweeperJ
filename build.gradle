@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.skaggsm'
-version '1.0.0-SNAPSHOT'
+version '0.1.0-SNAPSHOT'
 
 //It is still used by Java Gradle plugin
 //noinspection GroovyUnusedAssignment
@@ -15,13 +15,15 @@ repositories {
 }
 
 dependencies {
+    //JSR-305 annotations such as @NotNull @Nullable
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
 
     //Testing framework is JUnit 4.12
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
     //Mocking framework is Mockito 2.7.17
-    compile group: 'org.mockito', name: 'mockito-core', version: '2.7.17'
-
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.7.17'
+    //Matchers from Hamcrest 1.3
+    compile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
 }
 
 //noinspection GroovyMissingReturnStatement
@@ -35,6 +37,7 @@ test {
 pitest {
     threads = Runtime.getRuntime().availableProcessors()
     mutationThreshold = 90
+    verbose = true
 }
 
 check.dependsOn 'pitest' //Perform mutation testing with checks

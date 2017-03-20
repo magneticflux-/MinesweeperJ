@@ -2,11 +2,15 @@
 engines:
   checkstyle:
     enabled: true
+    exclude_paths:
+      - "src/test/java/"
     channel: beta
     checks:
       com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck:
         enabled: false
       com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck:
+        enabled: false
+      com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck:
         enabled: false
   fixme:
     enabled: true
