@@ -37,7 +37,7 @@ public class PlayerInfoTest {
 
     @SuppressWarnings("unchecked")
     @BeforeClass
-    public static void setUp() {
+    public static void setup() {
         SIMPLE_PLAYER = mock(Player.class);
         when(SIMPLE_PLAYER.getName()).thenReturn("Simple Player");
         when(SIMPLE_PLAYER.getIdentification()).thenReturn(new UUID(0, 0));
