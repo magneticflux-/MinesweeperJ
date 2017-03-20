@@ -39,7 +39,7 @@ public class MinesweeperMoveTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Theory
-    public void Given_AnyPlayerAnyMoveTypeNonnegativeRowNonnegativeColumn_When_BuildCalled_Then_AllDataMatches(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
+    public void Given_Defaults_When_SetCoordinatesBuildCalled_Then_AllDataMatches(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
         assumeThat(row, greaterThanOrEqualTo(0));
         assumeThat(column, greaterThanOrEqualTo(0));
 
@@ -56,55 +56,7 @@ public class MinesweeperMoveTest {
     }
 
     @Theory
-    public void Given_AnyPlayerAnyMoveTypeNegativeRowAnyColumn_When_BuildCalled_Then_ThrowIllegalArgumentException(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
-        assumeThat(row, lessThan(0));
-
-        expectedException.expect(IllegalArgumentException.class);
-        new MinesweeperMove.Builder()
-                .setPlayer(anyPlayer)
-                .setMoveType(anyMoveType)
-                .setCoordinates(row, column)
-                .build();
-    }
-
-    @Theory
-    public void Given_AnyPlayerAnyMoveTypeAnyRowNegativeColumn_When_BuildCalled_Then_ThrowIllegalArgumentException(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
-        assumeThat(column, lessThan(0));
-
-        expectedException.expect(IllegalArgumentException.class);
-        new MinesweeperMove.Builder()
-                .setPlayer(anyPlayer)
-                .setMoveType(anyMoveType)
-                .setCoordinates(row, column)
-                .build();
-    }
-
-    @Theory
-    public void Given_NoPlayerAnyMoveTypeNonnegativeRowNonnegativeColumn_When_BuildCalled_Then_ThrowIllegalStateException(MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
-        assumeThat(row, greaterThanOrEqualTo(0));
-        assumeThat(column, greaterThanOrEqualTo(0));
-
-        expectedException.expect(IllegalStateException.class);
-        new MinesweeperMove.Builder()
-                .setMoveType(anyMoveType)
-                .setCoordinates(row, column)
-                .build();
-    }
-
-    @Theory
-    public void Given_AnyPlayerNoMoveTypeNonnegativeRowNonnegativeColumn_When_BuildCalled_Then_ThrowIllegalStateException(Player<MinesweeperMove, ? extends View> anyPlayer, int row, int column) throws Exception {
-        assumeThat(row, greaterThanOrEqualTo(0));
-        assumeThat(column, greaterThanOrEqualTo(0));
-
-        expectedException.expect(IllegalStateException.class);
-        new MinesweeperMove.Builder()
-                .setPlayer(anyPlayer)
-                .setCoordinates(row, column)
-                .build();
-    }
-
-    @Theory
-    public void Given_AnyPlayerAnyMoveTypeNonnegativeRowNonnegativeColumn_When_SetRowSetColumnBuildCalled_Then_AllDataMatches(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
+    public void Given_Defaults_When_SetRowSetColumnBuildCalled_Then_AllDataMatches(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
         assumeThat(row, greaterThanOrEqualTo(0));
         assumeThat(column, greaterThanOrEqualTo(0));
 
@@ -119,5 +71,53 @@ public class MinesweeperMoveTest {
         assertEquals(minesweeperMove.getMoveType(), anyMoveType);
         assertEquals(minesweeperMove.getRow(), row);
         assertEquals(minesweeperMove.getColumn(), column);
+    }
+
+    @Theory
+    public void Given_NegativeRowAnyColumn_When_BuildCalled_Then_ThrowIllegalArgumentException(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
+        assumeThat(row, lessThan(0));
+
+        expectedException.expect(IllegalArgumentException.class);
+        new MinesweeperMove.Builder()
+                .setPlayer(anyPlayer)
+                .setMoveType(anyMoveType)
+                .setCoordinates(row, column)
+                .build();
+    }
+
+    @Theory
+    public void Given_AnyRowNegativeColumn_When_BuildCalled_Then_ThrowIllegalArgumentException(Player<MinesweeperMove, ? extends View> anyPlayer, MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
+        assumeThat(column, lessThan(0));
+
+        expectedException.expect(IllegalArgumentException.class);
+        new MinesweeperMove.Builder()
+                .setPlayer(anyPlayer)
+                .setMoveType(anyMoveType)
+                .setCoordinates(row, column)
+                .build();
+    }
+
+    @Theory
+    public void Given_NoPlayer_When_BuildCalled_Then_ThrowIllegalStateException(MinesweeperMove.MoveType anyMoveType, int row, int column) throws Exception {
+        assumeThat(row, greaterThanOrEqualTo(0));
+        assumeThat(column, greaterThanOrEqualTo(0));
+
+        expectedException.expect(IllegalStateException.class);
+        new MinesweeperMove.Builder()
+                .setMoveType(anyMoveType)
+                .setCoordinates(row, column)
+                .build();
+    }
+
+    @Theory
+    public void Given_NoMoveType_When_BuildCalled_Then_ThrowIllegalStateException(Player<MinesweeperMove, ? extends View> anyPlayer, int row, int column) throws Exception {
+        assumeThat(row, greaterThanOrEqualTo(0));
+        assumeThat(column, greaterThanOrEqualTo(0));
+
+        expectedException.expect(IllegalStateException.class);
+        new MinesweeperMove.Builder()
+                .setPlayer(anyPlayer)
+                .setCoordinates(row, column)
+                .build();
     }
 }
