@@ -2,6 +2,8 @@ package org.skaggsm.minesweeperj.board;
 
 import org.skaggsm.minesweeperj.entities.Player;
 
+import javax.annotation.Nonnull;
+
 /**
  * This class defines a game board and a method to make a move on the board.
  *
@@ -10,7 +12,7 @@ import org.skaggsm.minesweeperj.entities.Player;
  * @author Mitchell Skaggs
  */
 public abstract class AbstractGame<M extends Move, V extends View> implements Viewable<V>, Participable<M, V>, Playable<M, V> {
-    public void addPlayer(Player<M, V> player) {
+    public void addPlayer(@Nonnull Player<M, V> player) {
         addViewer(player);
         addParticipant(player);
     }

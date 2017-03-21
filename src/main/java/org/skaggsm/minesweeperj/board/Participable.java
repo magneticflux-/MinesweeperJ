@@ -2,6 +2,8 @@ package org.skaggsm.minesweeperj.board;
 
 import org.skaggsm.minesweeperj.entities.Participant;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Mitchell Skaggs
  */
@@ -11,5 +13,5 @@ public interface Participable<M extends Move, V extends View> {
      *
      * @param participant The participant to add
      */
-    void addParticipant(Participant<M, V> participant);
+    void addParticipant(@Nonnull Participant<M, V> participant);
 }
