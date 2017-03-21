@@ -9,14 +9,8 @@ import org.skaggsm.minesweeperj.entities.Player;
  * @param <V> The type of the object that defines a view of the game state
  * @author Mitchell Skaggs
  */
-public interface Game<M extends Move, V extends View> extends Viewable<V>, Participable<M, V> {
-
-    /**
-     * Adds a player to the game.
-     *
-     * @param player The player to add
-     */
-    default void addPlayer(Player<M, V> player) {
+public abstract class AbstractGame<M extends Move, V extends View> implements Viewable<V>, Participable<M, V>, Playable<M, V> {
+    public void addPlayer(Player<M, V> player) {
         addViewer(player);
         addParticipant(player);
     }

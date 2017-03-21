@@ -15,12 +15,10 @@ import org.mockito.quality.Strictness;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.entities.Player;
 
-import java.util.UUID;
-
 import static org.mockito.Mockito.*;
 
 /**
- * This class test the {@link Game} interface's default method {@link Game#addPlayer(Player)}.
+ * This class tests the {@link AbstractGame} class.
  *
  * @author Mitchell Skaggs
  */
@@ -35,21 +33,19 @@ public class GameTest {
     public final MockitoRule mockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
     @Mock(answer = Answers.CALLS_REAL_METHODS)
-    private Game<Move, View> game;
+    private AbstractGame<Move, View> abstractGame;
 
     @SuppressWarnings("unchecked")
     @BeforeClass
     public static void setup() {
-        SIMPLE_PLAYER = mock(Player.class); //Needed because of @DataPoint usage
-        when(SIMPLE_PLAYER.getName()).thenReturn("Simple Player");
-        when(SIMPLE_PLAYER.getIdentification()).thenReturn(new UUID(0, 0));
+        SIMPLE_PLAYER = mock(Player.class); //Needed because of @DataPoint usage and static field
     }
 
     @Theory
     public void Given_AnyPlayer_When_AddPlayerCalled_Then_AddParticipantCalledAddViewerCalled(Player<Move, View> anyPlayer) throws Exception {
-        game.addPlayer(anyPlayer);
+        abstractGame.addPlayer(anyPlayer);
 
-        verify(game, times(1)).addParticipant(anyPlayer);
-        verify(game, times(1)).addViewer(anyPlayer);
+        verify(abstractGame, times(1)).addParticipant(anyPlayer);
+        verify(abstractGame, times(1)).addViewer(anyPlayer);
     }
 }
