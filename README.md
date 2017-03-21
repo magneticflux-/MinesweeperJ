@@ -6,3 +6,5 @@
 
 # MinesweeperJ
 An AI-oriented implementation of Minesweeper, using TDD
+
+[![Throughput Graph](https://graphs.waffle.io/magneticflux-/MinesweeperJ/throughput.svg)](https://waffle.io/magneticflux-/MinesweeperJ/metrics/throughput)
