@@ -1,6 +1,5 @@
 package org.skaggsm.minesweeperj.board;
 
-import org.skaggsm.minesweeperj.entities.Participant;
 import org.skaggsm.minesweeperj.entities.Player;
 
 /**
@@ -10,13 +9,7 @@ import org.skaggsm.minesweeperj.entities.Player;
  * @param <V> The type of the object that defines a view of the game state
  * @author Mitchell Skaggs
  */
-public interface Game<M extends Move, V extends View> extends Viewable<V> {
-    /**
-     * Adds a participant to the game.
-     *
-     * @param participant The participant to add
-     */
-    void addParticipant(Participant<M, V> participant);
+public interface Game<M extends Move, V extends View> extends Viewable<V>, Participable<M, V> {
 
     /**
      * Adds a player to the game.
