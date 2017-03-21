@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  */
 public interface Viewable<V extends View> {
     /**
-     * Adds a viewer to the game.
+     * Adds a viewer to this Viewable.
      *
      * @param viewer The viewer to add
      */

@@ -10,9 +10,9 @@ import javax.annotation.Nonnull;
 public interface Playable<M extends Move, V extends View> {
 
     /**
-     * Adds a player to the game.
+     * Adds a player to this Playable.
      *
-     * @param player The player to add
+     * @param player the player to add
      */
     void addPlayer(@Nonnull Player<M, V> player);
 }

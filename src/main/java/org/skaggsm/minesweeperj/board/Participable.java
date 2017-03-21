@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  */
 public interface Participable<M extends Move, V extends View> {
     /**
-     * Adds a participant to the game.
+     * Adds a participant to this Participable.
      *
      * @param participant The participant to add
      */
