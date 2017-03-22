@@ -24,4 +24,9 @@ public abstract class AbstractGame<M extends Move, V extends View> implements Ga
     public void addViewer(@Nonnull Viewer<V> viewer) {
         viewers.add(viewer);
     }
+
+    @Override
+    public void removeViewer(@Nonnull Viewer<V> viewer) {
+        viewers.remove(viewer);
+    }
 }
