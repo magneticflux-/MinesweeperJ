@@ -1,6 +1,6 @@
 package org.skaggsm.minesweeperj.board;
 
-import org.skaggsm.minesweeperj.entities.Player;
+import org.skaggsm.minesweeperj.entities.PlayerInfo;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -11,21 +11,21 @@ import javax.annotation.Nonnull;
  * @author Mitchell Skaggs
  */
 public class MinesweeperMove implements Move {
-    private final Player<MinesweeperMove, ? extends View> player;
+    private final PlayerInfo<MinesweeperMove, ? extends View> playerInfo;
     private final int row;
     private final int column;
     private final MoveType moveType;
 
-    private MinesweeperMove(@Nonnull Player<MinesweeperMove, ? extends View> player, @Nonnegative int row, @Nonnegative int column, @Nonnull MoveType moveType) {
-        this.player = player;
+    private MinesweeperMove(@Nonnull PlayerInfo<MinesweeperMove, ? extends View> playerInfo, @Nonnegative int row, @Nonnegative int column, @Nonnull MoveType moveType) {
+        this.playerInfo = playerInfo;
         this.row = row;
         this.column = column;
         this.moveType = moveType;
     }
 
     @Override
-    public Player<MinesweeperMove, ? extends View> getPlayer() {
-        return player;
+    public PlayerInfo<MinesweeperMove, ? extends View> getPlayerInfo() {
+        return playerInfo;
     }
 
     public int getRow() {
@@ -50,7 +50,7 @@ public class MinesweeperMove implements Move {
      * @author Mitchell Skaggs
      */
     public static class Builder {
-        private Player<MinesweeperMove, ? extends View> player;
+        private PlayerInfo<MinesweeperMove, ? extends View> playerInfo;
         private int row;
         private int column;
         private MoveType moveType;
@@ -59,20 +59,20 @@ public class MinesweeperMove implements Move {
          * Constructs a new instance with default values.
          */
         public Builder() {
-            this.player = null;
+            this.playerInfo = null;
             this.row = -1;
             this.column = -1;
             this.moveType = null;
         }
 
         /**
-         * Sets the player that made the move.
+         * Sets the playerInfo that made the move.
          *
-         * @param player The player
+         * @param playerInfo The playerInfo
          * @return The builder
          */
-        public Builder setPlayer(@Nonnull Player<MinesweeperMove, ? extends View> player) {
-            this.player = player;
+        public Builder setPlayerInfo(@Nonnull PlayerInfo<MinesweeperMove, ? extends View> playerInfo) {
+            this.playerInfo = playerInfo;
             return this;
         }
 
@@ -135,20 +135,20 @@ public class MinesweeperMove implements Move {
         /**
          * Builds a {@link MinesweeperMove}.
          *
-         * @return a new MinesweeperMove
-         * @throws NullPointerException if {@link Builder#setPlayer(Player)} or {@link Builder#setMoveType(MoveType)} was not called
+         * @return a new MinesweeperMoveL
+         * @throws NullPointerException if {@link Builder#setPlayerInfo(PlayerInfo)} or {@link Builder#setMoveType(MoveType)} was not called
          */
         public MinesweeperMove build() {
             checkArguments();
-            return new MinesweeperMove(player, row, column, moveType);
+            return new MinesweeperMove(playerInfo, row, column, moveType);
         }
 
         /**
          * Throws {@link IllegalStateException} if the builder has not been fully constructed before the {@link Builder#build()} method is called.
          */
         private void checkArguments() {
-            if (this.player == null)
-                throw new IllegalStateException("\"setPlayer\" must be called before building!");
+            if (this.playerInfo == null)
+                throw new IllegalStateException("\"setPlayerInfo\" must be called before building!");
             if (row < 0)
                 throw new IllegalStateException("\"setRow\" must be called before building!");
             if (column < 0)
