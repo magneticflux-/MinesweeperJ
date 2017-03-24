@@ -9,11 +9,11 @@ import java.util.List;
  *
  * @author Mitchell Skaggs
  */
-public class SequentialTurnController implements TurnController<Move, View> {
+public class SequentialTurnController<M extends Move, V extends View> implements TurnController<M, V> {
     protected int lastMovedIndex = 0;
 
     @Override
-    public Participant<Move, View> getNextParticipant(List<Participant<Move, View>> participants) {
+    public Participant<M, V> getNextParticipant(List<Participant<M, V>> participants) {
         if (participants.size() == 0)
             throw new IllegalArgumentException("Participant list size must be > 0!");
 
