@@ -21,4 +21,11 @@ public interface Viewable<V extends View> {
      * @param viewer the viewer to remove
      */
     void removeViewer(@Nonnull Viewer<V> viewer);
+
+    /**
+     * Returns the publicly visible view of the Viewable.
+     *
+     * @return a public view
+     */
+    V getPublicView();
 }
