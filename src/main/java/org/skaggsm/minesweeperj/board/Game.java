@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 /**
  * @author Mitchell Skaggs
  */
-public interface Game<M extends Move, V extends View> extends Viewable<V>, Participable<M, V>, Playable<M, V> {
+public interface Game<M extends Move, V extends View> extends Viewable<V>, Participable<M, V>, Playable<M, V>, HasTurnController {
     /**
      * Adds a player to this game.
      *
@@ -24,4 +24,9 @@ public interface Game<M extends Move, V extends View> extends Viewable<V>, Parti
      * @param move the move to make
      */
     void makeMove(M move);
+
+    /**
+     * Makes the next participant take their move.
+     */
+    void nextTurn();
 }
