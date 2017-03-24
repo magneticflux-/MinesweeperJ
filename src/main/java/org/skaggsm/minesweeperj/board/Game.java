@@ -5,14 +5,11 @@ import org.skaggsm.minesweeperj.entities.Player;
 import javax.annotation.Nonnull;
 
 /**
+ * This class defines a Game object that uses a {@link TurnController} for deciding moves.
+ *
  * @author Mitchell Skaggs
  */
 public interface Game<M extends Move, V extends View> extends Viewable<V>, Participable<M, V>, Playable<M, V>, HasTurnController {
-    /**
-     * Adds a player to this game.
-     *
-     * @param player the player to add
-     */
     @Override
     default void addPlayer(@Nonnull Player<M, V> player) {
         addViewer(player);
