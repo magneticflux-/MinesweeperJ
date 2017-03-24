@@ -1,5 +1,6 @@
 package org.skaggsm.minesweeperj.board;
 
+import org.skaggsm.minesweeperj.entities.Participant;
 import org.skaggsm.minesweeperj.entities.Viewer;
 
 import javax.annotation.Nonnull;
@@ -14,10 +15,32 @@ import java.util.List;
  * @author Mitchell Skaggs
  */
 public abstract class AbstractGame<M extends Move, V extends View> implements Game<M, V> {
-    protected List<Viewer<V>> viewers;
+    protected final TurnController<M, V> turnController;
+    protected final List<Viewer<V>> viewers;
+    protected final List<Participant<M, V>> participants;
 
-    public AbstractGame() {
+    public AbstractGame(TurnController<M, V> turnController) {
+        this.turnController = turnController;
         viewers = new ArrayList<>();
+        participants = new ArrayList<>();
+    }
+
+    @Override
+    public void nextTurn() {
+        this.makeMove(getMoveForParticipant(getNextParticipant()));
+    }
+
+    protected M getMoveForParticipant(Participant<M, V> participant) {
+        return participant.requestMove(this.getPublicView());
+    }
+
+    protected Participant<M, V> getNextParticipant() {
+        return turnController.getNextParticipant(this.participants);
+    }
+
+    @Override
+    public TurnController getTurnController() {
+        return turnController;
     }
 
     @Override
@@ -29,4 +52,22 @@ public abstract class AbstractGame<M extends Move, V extends View> implements Ga
     public void removeViewer(@Nonnull Viewer<V> viewer) {
         viewers.remove(viewer);
     }
+
+    @Override
+    public void addParticipant(@Nonnull Participant<M, V> participant) {
+        participants.add(participant);
+    }
+
+    @Override
+    public void removeParticipant(@Nonnull Participant<M, V> participant) {
+        participants.remove(participant);
+    }
+
+    protected void updateAllViewers() {
+        for (Viewer<V> viewer : viewers) {
+            updateViewer(viewer);
+        }
+    }
+
+    protected abstract void updateViewer(Viewer<V> viewer);
 }
