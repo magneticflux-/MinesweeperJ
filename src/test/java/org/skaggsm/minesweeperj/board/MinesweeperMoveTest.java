@@ -127,4 +127,28 @@ public class MinesweeperMoveTest {
                 .setCoordinates(row, column)
                 .build();
     }
+
+    @Theory
+    public void Given_NoRow_When_BuildCalled_Then_ThrowIllegalStateException(PlayerInfo<MinesweeperMove, ? extends View> anyPlayerInfo, MinesweeperMove.MoveType anyMoveType, int column) throws Exception {
+        assumeThat(column, greaterThanOrEqualTo(0));
+
+        exceptionRule.expect(IllegalStateException.class);
+        new MinesweeperMove.Builder()
+                .setPlayerInfo(anyPlayerInfo)
+                .setMoveType(anyMoveType)
+                .setColumn(column)
+                .build();
+    }
+
+    @Theory
+    public void Given_NoColumn_When_BuildCalled_Then_AllDataMatches(PlayerInfo<MinesweeperMove, ? extends View> anyPlayerInfo, MinesweeperMove.MoveType anyMoveType, int row) throws Exception {
+        assumeThat(row, greaterThanOrEqualTo(0));
+
+        exceptionRule.expect(IllegalStateException.class);
+        new MinesweeperMove.Builder()
+                .setPlayerInfo(anyPlayerInfo)
+                .setMoveType(anyMoveType)
+                .setRow(row)
+                .build();
+    }
 }
