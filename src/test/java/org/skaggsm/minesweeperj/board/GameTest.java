@@ -15,12 +15,10 @@ import org.mockito.quality.Strictness;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.entities.Player;
 
-import java.util.UUID;
-
 import static org.mockito.Mockito.*;
 
 /**
- * This class test the {@link Game} interface's default method {@link Game#addPlayer(Player)}.
+ * This class tests the {@link AbstractGame} class.
  *
  * @author Mitchell Skaggs
  */
@@ -40,9 +38,7 @@ public class GameTest {
     @SuppressWarnings("unchecked")
     @BeforeClass
     public static void setup() {
-        SIMPLE_PLAYER = mock(Player.class); //Needed because of @DataPoint usage
-        when(SIMPLE_PLAYER.getName()).thenReturn("Simple Player");
-        when(SIMPLE_PLAYER.getIdentification()).thenReturn(new UUID(0, 0));
+        SIMPLE_PLAYER = mock(Player.class); //Needed because of @DataPoint usage and static field
     }
 
     @Theory
