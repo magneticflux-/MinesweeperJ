@@ -15,4 +15,11 @@ public interface Playable<M extends Move, V extends View> {
      * @param player the player to add
      */
     void addPlayer(@Nonnull Player<M, V> player);
+
+    /**
+     * Removes a player from this Playable.
+     *
+     * @param player the player to remove
+     */
+    void removePlayer(@Nonnull Player<M, V> player);
 }
