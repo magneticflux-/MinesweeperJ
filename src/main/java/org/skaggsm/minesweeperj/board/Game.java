@@ -13,9 +13,16 @@ public interface Game<M extends Move, V extends View> extends Viewable<V>, Parti
      *
      * @param player the player to add
      */
+    @Override
     default void addPlayer(@Nonnull Player<M, V> player) {
         addViewer(player);
         addParticipant(player);
+    }
+
+    @Override
+    default void removePlayer(@Nonnull Player<M, V> player) {
+        removeParticipant(player);
+        removeViewer(player);
     }
 
     /**
