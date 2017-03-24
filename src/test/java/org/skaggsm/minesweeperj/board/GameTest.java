@@ -33,7 +33,7 @@ public class GameTest {
     public final MockitoRule mockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
     @Mock(answer = Answers.CALLS_REAL_METHODS)
-    private AbstractGame<Move, View> abstractGame;
+    private Game<Move, View> game;
 
     @SuppressWarnings("unchecked")
     @BeforeClass
@@ -43,9 +43,9 @@ public class GameTest {
 
     @Theory
     public void Given_AnyPlayer_When_AddPlayerCalled_Then_AddParticipantCalledAddViewerCalled(Player<Move, View> anyPlayer) throws Exception {
-        abstractGame.addPlayer(anyPlayer);
+        game.addPlayer(anyPlayer);
 
-        verify(abstractGame, times(1)).addParticipant(anyPlayer);
-        verify(abstractGame, times(1)).addViewer(anyPlayer);
+        verify(game, times(1)).addParticipant(anyPlayer);
+        verify(game, times(1)).addViewer(anyPlayer);
     }
 }
