@@ -5,6 +5,8 @@ import org.skaggsm.minesweeperj.entities.Player;
 import javax.annotation.Nonnull;
 
 /**
+ * This interface defines an object that can be played by {@link Player Players}.
+ *
  * @author Mitchell Skaggs
  */
 public interface Playable<M extends Move, V extends View> {

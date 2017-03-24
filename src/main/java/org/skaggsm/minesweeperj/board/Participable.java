@@ -5,6 +5,8 @@ import org.skaggsm.minesweeperj.entities.Participant;
 import javax.annotation.Nonnull;
 
 /**
+ * This interface defines an object that is able to be participated in.
+ *
  * @author Mitchell Skaggs
  */
 public interface Participable<M extends Move, V extends View> {

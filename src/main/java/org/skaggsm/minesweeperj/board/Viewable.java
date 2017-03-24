@@ -5,6 +5,8 @@ import org.skaggsm.minesweeperj.entities.Viewer;
 import javax.annotation.Nonnull;
 
 /**
+ * This interface defines an object that is able to be viewed.
+ *
  * @author Mitchell Skaggs
  */
 public interface Viewable<V extends View> {

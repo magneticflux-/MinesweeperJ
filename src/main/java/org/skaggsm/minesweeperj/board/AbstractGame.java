@@ -20,6 +20,11 @@ public abstract class AbstractGame<M extends Move, V extends View> implements Ga
     protected final List<Viewer<V>> viewers;
     protected final List<Participant<M, V>> participants;
 
+    /**
+     * Creates a new AbstractGame using the provided TurnController for deciding turn ordering.
+     *
+     * @param turnController the TurnController for the AbstractGame to use
+     */
     public AbstractGame(TurnController<M, V> turnController) {
         this.turnController = turnController;
         viewers = new ArrayList<>();
