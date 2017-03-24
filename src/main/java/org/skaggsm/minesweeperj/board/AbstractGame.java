@@ -5,6 +5,7 @@ import org.skaggsm.minesweeperj.entities.Viewer;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -53,6 +54,10 @@ public abstract class AbstractGame<M extends Move, V extends View> implements Ga
         viewers.remove(viewer);
     }
 
+    public List<Viewer<V>> getViewers() {
+        return Collections.unmodifiableList(viewers);
+    }
+
     @Override
     public void addParticipant(@Nonnull Participant<M, V> participant) {
         participants.add(participant);
@@ -61,6 +66,10 @@ public abstract class AbstractGame<M extends Move, V extends View> implements Ga
     @Override
     public void removeParticipant(@Nonnull Participant<M, V> participant) {
         participants.remove(participant);
+    }
+
+    public List<Participant<M, V>> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 
     protected void updateAllViewers() {
