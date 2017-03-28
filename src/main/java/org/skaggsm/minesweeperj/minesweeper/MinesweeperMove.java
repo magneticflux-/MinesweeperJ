@@ -154,7 +154,7 @@ public class MinesweeperMove implements Move {
         /**
          * Builds a {@link MinesweeperMove}.
          *
-         * @return a new MinesweeperMoveL
+         * @return a new MinesweeperMove
          * @throws NullPointerException if {@link Builder#setPlayerInfo(PlayerInfo)} or {@link Builder#setMoveType(MoveType)} was not called
          */
         public MinesweeperMove build() {
