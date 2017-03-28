@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.board;
+package org.skaggsm.minesweeperj.minesweeper;
 
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -27,6 +27,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.skaggsm.categories.UnitTests;
+import org.skaggsm.minesweeperj.board.View;
 import org.skaggsm.minesweeperj.entities.PlayerInfo;
 
 import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;

@@ -15,8 +15,10 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.board;
+package org.skaggsm.minesweeperj.minesweeper;
 
+import org.skaggsm.minesweeperj.board.Move;
+import org.skaggsm.minesweeperj.board.View;
 import org.skaggsm.minesweeperj.entities.PlayerInfo;
 
 import javax.annotation.Nonnegative;
