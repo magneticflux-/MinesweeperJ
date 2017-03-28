@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.skaggsm'
-version '0.1.0-SNAPSHOT'
+version '0.1.0'
 
 //It is still used by Java Gradle plugin
 //noinspection GroovyUnusedAssignment
