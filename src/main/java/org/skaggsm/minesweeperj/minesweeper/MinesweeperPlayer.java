@@ -17,12 +17,15 @@
 
 package org.skaggsm.minesweeperj.minesweeper;
 
+import org.skaggsm.minesweeperj.board.Move;
 import org.skaggsm.minesweeperj.board.View;
 import org.skaggsm.minesweeperj.entities.SimplePlayer;
 
 import javax.annotation.Nonnull;
 
 /**
+ * This class represents a Minesweeper player. It uses the {@link MinesweeperMove} as its {@link Move}.
+ *
  * @author Mitchell Skaggs
  */
 public abstract class MinesweeperPlayer extends SimplePlayer<MinesweeperMove, View> {
