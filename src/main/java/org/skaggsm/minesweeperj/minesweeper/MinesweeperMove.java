@@ -15,8 +15,10 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.board;
+package org.skaggsm.minesweeperj.minesweeper;
 
+import org.skaggsm.minesweeperj.board.Move;
+import org.skaggsm.minesweeperj.board.View;
 import org.skaggsm.minesweeperj.entities.PlayerInfo;
 
 import javax.annotation.Nonnegative;
@@ -152,7 +154,7 @@ public class MinesweeperMove implements Move {
         /**
          * Builds a {@link MinesweeperMove}.
          *
-         * @return a new MinesweeperMoveL
+         * @return a new MinesweeperMove
          * @throws NullPointerException if {@link Builder#setPlayerInfo(PlayerInfo)} or {@link Builder#setMoveType(MoveType)} was not called
          */
         public MinesweeperMove build() {
