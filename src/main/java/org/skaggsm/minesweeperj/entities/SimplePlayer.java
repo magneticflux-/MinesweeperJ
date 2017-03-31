@@ -33,6 +33,7 @@ import java.util.UUID;
 public abstract class SimplePlayer<M extends Move, V extends View> implements Player<M, V> {
     protected final String name;
     protected final UUID identification;
+    protected V lastView;
 
     public SimplePlayer(@Nonnull String name) {
         this.name = name;
@@ -48,4 +49,16 @@ public abstract class SimplePlayer<M extends Move, V extends View> implements Pl
     public UUID getIdentification() {
         return this.identification;
     }
+
+    @Override
+    public void updateView(V view) {
+        lastView = view;
+    }
+
+    @Override
+    public M requestMove(V view) {
+        return requestMoveWithPrivateView(lastView);
+    }
+
+    protected abstract M requestMoveWithPrivateView(V view);
 }

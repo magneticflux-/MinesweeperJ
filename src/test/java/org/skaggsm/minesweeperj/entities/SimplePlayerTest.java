@@ -17,9 +17,10 @@
 
 package org.skaggsm.minesweeperj.entities;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.experimental.categories.Category;
+import org.junit.experimental.theories.DataPoint;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -35,6 +36,7 @@ import javax.annotation.Nonnull;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.*;
 
 /**
  * @author Mitchell Skaggs
@@ -44,12 +46,15 @@ import static org.junit.Assert.assertNotEquals;
 public class SimplePlayerTest {
     @DataPoints
     public static final String[] NAME_STRINGS = new String[]{"Test", "", "Player 1", "\'\"Test\"\'"};
+    @DataPoint
+    public static View SIMPLE_VIEW;
 
     @Rule
     public final MockitoRule mockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void staticSetup() {
+        SIMPLE_VIEW = mock(View.class);
     }
 
     @Theory
@@ -67,17 +72,33 @@ public class SimplePlayerTest {
         assertNotEquals(simplePlayer1.getIdentification(), simplePlayer2.getIdentification());
     }
 
-    private static final class SimplePlayerImpl extends SimplePlayer<Move, View> {
-        public SimplePlayerImpl(@Nonnull String name) {
+    @Theory
+    public void Given_AnyView_When_UpdateViewCalled_Then_StoreCorrectView(View anyView) {
+        SimplePlayer<Move, View> simplePlayer = new SimplePlayerImpl("");
+
+        simplePlayer.updateView(anyView);
+
+        assertEquals(simplePlayer.lastView, anyView);
+    }
+
+    @Theory
+    public void Given_Nothing_When_RequestMoveCalled_Then_CallRequestMoveWithPrivateView() {
+        SimplePlayer<Move, View> simplePlayer = spy(new SimplePlayerImpl(""));
+        View view = mock(View.class);
+
+        simplePlayer.updateView(view);
+        simplePlayer.requestMove(null);
+
+        verify(simplePlayer).requestMoveWithPrivateView(view);
+    }
+
+    private static class SimplePlayerImpl extends SimplePlayer<Move, View> {
+        SimplePlayerImpl(@Nonnull String name) {
             super(name);
         }
 
         @Override
-        public void updateView(View view) {
-        }
-
-        @Override
-        public Move requestMove(View view) {
+        protected Move requestMoveWithPrivateView(View view) {
             return null;
         }
     }
