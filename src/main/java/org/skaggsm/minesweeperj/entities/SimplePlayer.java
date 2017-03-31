@@ -60,5 +60,13 @@ public abstract class SimplePlayer<M extends Move, V extends View> implements Pl
         return requestMoveWithPrivateView(lastView);
     }
 
+    /**
+     * This method is called using the stored {@link View} received from being a privileged {@link Viewer}.
+     *
+     * @param view the private view
+     * @return the move that the player wishes to make.
+     * @see Participant#requestMove(View)
+     * @see Viewer#updateView(View)
+     */
     protected abstract M requestMoveWithPrivateView(V view);
 }
