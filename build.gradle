@@ -6,9 +6,8 @@ plugins {
 group 'org.skaggsm'
 version '0.2.0-SNAPSHOT'
 
-//It is still used by Java Gradle plugin
-//noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     jcenter()
@@ -28,17 +27,15 @@ dependencies {
     testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
 }
 
-//noinspection GroovyMissingReturnStatement
 test {
     useJUnit {
-        //noinspection GrUnresolvedAccess
         excludeCategories 'org.skaggsm.categories.UnstableTests'
     }
 }
 
 pitest {
     threads = Runtime.getRuntime().availableProcessors()
-    mutationThreshold = 90
+    mutationThreshold = 100
     verbose = true
 }
 
