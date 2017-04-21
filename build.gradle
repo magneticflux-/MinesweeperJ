@@ -39,4 +39,4 @@ pitest {
     verbose = true
 }
 
-check.dependsOn 'pitest' //Perform mutation testing with checks
+check.finalizedBy 'pitest' //Perform mutation testing with checks
