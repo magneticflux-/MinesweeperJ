@@ -28,6 +28,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.quality.Strictness;
+import org.skaggsm.categories.LegacyTests;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.legacy.board.Move;
 import org.skaggsm.minesweeperj.legacy.board.View;
@@ -43,8 +44,8 @@ import static org.mockito.Mockito.when;
  *
  * @author Mitchell Skaggs
  */
-@Category(UnitTests.class)
 @RunWith(Theories.class)
+@Category({UnitTests.class, LegacyTests.class})
 public class PlayerInfoTest {
     @Mock
     @DataPoint

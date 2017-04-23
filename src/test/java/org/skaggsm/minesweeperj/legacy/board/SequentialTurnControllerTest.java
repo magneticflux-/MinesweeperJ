@@ -27,6 +27,7 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.quality.Strictness;
+import org.skaggsm.categories.LegacyTests;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.legacy.entities.Participant;
 
@@ -41,7 +42,7 @@ import static org.mockito.Mockito.mock;
  * @author Mitchell Skaggs
  */
 @RunWith(Theories.class)
-@Category(UnitTests.class)
+@Category({UnitTests.class, LegacyTests.class})
 public class SequentialTurnControllerTest {
     @Rule
     public final MockitoRule mockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);

@@ -26,6 +26,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.skaggsm.categories.LegacyTests;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.legacy.board.View;
 import org.skaggsm.minesweeperj.legacy.entities.PlayerInfo;
@@ -41,8 +42,8 @@ import static org.mockito.Mockito.mock;
  *
  * @author Mitchell Skaggs
  */
-@Category(UnitTests.class)
 @RunWith(Theories.class)
+@Category({UnitTests.class, LegacyTests.class})
 public class MinesweeperMoveTest {
     @DataPoints
     public static MinesweeperMove.MoveType[] MOVE_TYPES = MinesweeperMove.MoveType.values();

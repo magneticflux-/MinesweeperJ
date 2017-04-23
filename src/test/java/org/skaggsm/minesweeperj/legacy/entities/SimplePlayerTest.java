@@ -28,6 +28,7 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.quality.Strictness;
+import org.skaggsm.categories.LegacyTests;
 import org.skaggsm.categories.UnitTests;
 import org.skaggsm.minesweeperj.legacy.board.Move;
 import org.skaggsm.minesweeperj.legacy.board.View;
@@ -42,7 +43,7 @@ import static org.mockito.Mockito.*;
  * @author Mitchell Skaggs
  */
 @RunWith(Theories.class)
-@Category(UnitTests.class)
+@Category({UnitTests.class, LegacyTests.class})
 public class SimplePlayerTest {
     @DataPoints
     public static final String[] NAME_STRINGS = new String[]{"Test", "", "Player 1", "\'\"Test\"\'"};
