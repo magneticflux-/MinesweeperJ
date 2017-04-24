@@ -19,6 +19,9 @@ package org.skaggsm.minesweeperj.game;
 
 import org.skaggsm.minesweeperj.game.tile.MinesweeperTile;
 
+import java.awt.*;
+import java.util.Collection;
+
 /**
  * @author Mitchell Skaggs
  */
@@ -26,4 +29,6 @@ public interface MinesweeperBoard {
     MinesweeperTile getTile(int x, int y);
 
     void setBomb(int x, int y);
+
+    Collection<Point> getAdjacentPoints(int x, int y);
 }

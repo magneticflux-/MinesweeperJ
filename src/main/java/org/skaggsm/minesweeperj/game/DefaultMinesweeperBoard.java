@@ -17,6 +17,8 @@
 
 package org.skaggsm.minesweeperj.game;
 
+import org.apache.commons.math3.exception.OutOfRangeException;
+import org.apache.commons.math3.exception.util.LocalizedFormats;
 import org.skaggsm.minesweeperj.game.tile.BombMinesweeperTile;
 import org.skaggsm.minesweeperj.game.tile.EmptyMinesweeperTile;
 import org.skaggsm.minesweeperj.game.tile.MinesweeperTile;
@@ -29,8 +31,12 @@ import java.util.*;
  */
 public class DefaultMinesweeperBoard implements MinesweeperBoard {
     private final Set<Point> bombs;
+    private final int width;
+    private final int height;
 
-    public DefaultMinesweeperBoard() {
+    public DefaultMinesweeperBoard(int width, int height) {
+        this.width = width;
+        this.height = height;
         bombs = new HashSet<>();
     }
 
@@ -45,21 +51,40 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
                             .count());
     }
 
-    private Collection<Point> getAdjacentPoints(int x, int y) {
+    private void requireInRange(int x, int y) {
+        if (x < 0 || x >= width)
+            throw new IllegalArgumentException(new OutOfRangeException(LocalizedFormats.OUT_OF_RANGE_RIGHT, x, 0, width));
+        if (y < 0 || y >= height)
+            throw new IllegalArgumentException(new OutOfRangeException(LocalizedFormats.OUT_OF_RANGE_RIGHT, y, 0, height));
+    }
+
+    private boolean inputIsInRange(int x, int y) {
+        return x >= 0 && x < width
+                && y >= 0 && y < height;
+    }
+
+    @Override
+    public Collection<Point> getAdjacentPoints(int x, int y) {
+        requireInRange(x, y);
+
         Collection<Point> points = new ArrayList<>(8);
 
         for (int adjustedYValue = y - 1; adjustedYValue <= y + 1; adjustedYValue++) {
             for (int adjustedXValue = x - 1; adjustedXValue <= x + 1; adjustedXValue++) {
 
-                if (adjustedYValue != y || adjustedXValue != x)
+                if (inputIsInRange(adjustedXValue, adjustedYValue)
+                        && !(adjustedYValue == y && adjustedXValue == x)) {
                     points.add(new Point(adjustedXValue, adjustedYValue));
+                }
             }
         }
-        return points;
+        return Collections.unmodifiableCollection(points);
     }
 
     @Override
     public void setBomb(int x, int y) {
+        requireInRange(x, y);
+
         bombs.add(new Point(x, y));
     }
 
