@@ -19,6 +19,7 @@ package org.skaggsm.minesweeperj.game;
 
 import org.apache.commons.math3.exception.OutOfRangeException;
 import org.apache.commons.math3.exception.util.LocalizedFormats;
+import org.apache.commons.math3.util.FastMath;
 import org.skaggsm.minesweeperj.game.tile.BombMinesweeperTile;
 import org.skaggsm.minesweeperj.game.tile.EmptyMinesweeperTile;
 import org.skaggsm.minesweeperj.game.tile.MinesweeperTile;
@@ -38,6 +39,10 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
         this.width = width;
         this.height = height;
         bombs = new HashSet<>();
+    }
+
+    private static int getNthDigit(int number, int base, int n) {
+        return (int) ((number / FastMath.pow(base, n)) % base);
     }
 
     @Override
@@ -92,18 +97,33 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        int maxXValue = bombs.stream().mapToInt(value -> value.x).max().orElse(1);
-        int maxYValue = bombs.stream().mapToInt(value -> value.y).max().orElse(1);
+        //noinspection SuspiciousNameCombination
+        int rowNumberDigits = (int) FastMath.log10(height) + 1;
+        int columnNumberDigits = (int) FastMath.log10(width) + 1;
 
-        //First line
-        stringBuilder.append(' ');
-        Collections.nCopies(maxXValue + 1, "__").forEach(stringBuilder::append);
+        //Column numbers
+        for (int digit = columnNumberDigits; digit > 0; digit--) {
+            Collections.nCopies(rowNumberDigits, " ").forEach(stringBuilder::append);
+            stringBuilder.append("  ");
+            for (int x = 0; x < width; x++) {
+                stringBuilder.append(getNthDigit(x, 10, digit - 1)).append(" ");
+            }
+            stringBuilder.append(" \n");
+        }
+
+        //Divider line
+        Collections.nCopies(rowNumberDigits, " ").forEach(stringBuilder::append);
+        stringBuilder.append("  ");
+        Collections.nCopies(width, "__").forEach(stringBuilder::append);
         stringBuilder.append(" \n");
 
         //Grid
-        for (int y = 0; y <= maxYValue; y++) {
+        for (int y = 0; y < height; y++) {
+            //Row number
+            stringBuilder.append(String.format("%0" + rowNumberDigits + "d ", y));
+
             stringBuilder.append('|');
-            for (int x = 0; x <= maxXValue; x++) {
+            for (int x = 0; x < width; x++) {
                 if (bombs.contains(new Point(x, y)))
                     stringBuilder.append("X ");
                 else
@@ -113,8 +133,9 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
         }
 
         //Last line
-        stringBuilder.append(' ');
-        Collections.nCopies(maxXValue + 1, "--").forEach(stringBuilder::append);
+        Collections.nCopies(rowNumberDigits, " ").forEach(stringBuilder::append);
+        stringBuilder.append("  ");
+        Collections.nCopies(width, "--").forEach(stringBuilder::append);
         stringBuilder.append(" ");
 
         return stringBuilder.toString();
