@@ -15,16 +15,22 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.game.tile;
+package org.skaggsm.minesweeperj.game;
 
-import javax.annotation.Nonnegative;
+import java.awt.*;
 
 /**
  * @author Mitchell Skaggs
  */
-public interface MinesweeperTile {
-    boolean isBomb();
+public class DefaultMinesweeperMove implements MinesweeperMove {
+    private final Point point;
 
-    @Nonnegative
-    long getAdjacentBombCount();
+    public DefaultMinesweeperMove(Point point) {
+        this.point = point;
+    }
+
+    @Override
+    public Point getPoint() {
+        return point;
+    }
 }

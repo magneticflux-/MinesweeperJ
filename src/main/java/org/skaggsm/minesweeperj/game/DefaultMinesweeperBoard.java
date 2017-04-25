@@ -25,7 +25,9 @@ import org.skaggsm.minesweeperj.game.tile.EmptyMinesweeperTile;
 import org.skaggsm.minesweeperj.game.tile.MinesweeperTile;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Mitchell Skaggs
@@ -46,12 +48,12 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
     }
 
     @Override
-    public MinesweeperTile getTile(int x, int y) {
-        if (bombs.contains(new Point(x, y)))
+    public MinesweeperTile getTile(Point point) {
+        if (bombs.contains(point))
             return new BombMinesweeperTile();
         else
             return new EmptyMinesweeperTile(
-                    getAdjacentPoints(x, y).stream()
+                    getAdjacentPoints(point.x, point.y).stream()
                             .filter(bombs::contains)
                             .count());
     }
@@ -69,10 +71,10 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
     }
 
     @Override
-    public Collection<Point> getAdjacentPoints(int x, int y) {
+    public Set<Point> getAdjacentPoints(int x, int y) {
         requireInRange(x, y);
 
-        Collection<Point> points = new ArrayList<>(8);
+        Set<Point> points = new HashSet<>(8);
 
         for (int adjustedYValue = y - 1; adjustedYValue <= y + 1; adjustedYValue++) {
             for (int adjustedXValue = x - 1; adjustedXValue <= x + 1; adjustedXValue++) {
@@ -83,7 +85,7 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
                 }
             }
         }
-        return Collections.unmodifiableCollection(points);
+        return Collections.unmodifiableSet(points);
     }
 
     @Override

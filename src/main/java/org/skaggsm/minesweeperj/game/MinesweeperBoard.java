@@ -20,15 +20,19 @@ package org.skaggsm.minesweeperj.game;
 import org.skaggsm.minesweeperj.game.tile.MinesweeperTile;
 
 import java.awt.*;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author Mitchell Skaggs
  */
 public interface MinesweeperBoard {
-    MinesweeperTile getTile(int x, int y);
+    default MinesweeperTile getTile(int x, int y) {
+        return getTile(new Point(x, y));
+    }
 
     void setBomb(int x, int y);
 
-    Collection<Point> getAdjacentPoints(int x, int y);
+    Set<Point> getAdjacentPoints(int x, int y);
+
+    MinesweeperTile getTile(Point point);
 }

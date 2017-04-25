@@ -37,7 +37,7 @@ test {
 
 pitest {
     threads = Runtime.getRuntime().availableProcessors()
-    mutationThreshold = 100
+    mutationThreshold = 75
     verbose = true
     timestampedReports = false
     excludedMethods = ["toString", "lambda\$toString\$*", "hashCode", "lambda\$hashCode\$*"]

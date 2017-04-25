@@ -17,6 +17,8 @@
 
 package org.skaggsm.minesweeperj.game.tile;
 
+import javax.annotation.Nonnegative;
+
 /**
  * @author Mitchell Skaggs
  */
@@ -27,6 +29,7 @@ public class BombMinesweeperTile implements MinesweeperTile {
     }
 
     @Override
+    @Nonnegative
     public long getAdjacentBombCount() {
         throw new UnsupportedOperationException();
     }
