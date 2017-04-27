@@ -41,12 +41,12 @@ public class InputStreamMinesweeperPlayerTest {
 
     @Test
     public void When_GetMoveCalled_Return_CorrectMoves() {
-        assertThat(inputStreamMinesweeperPlayer.getMove(), Matchers.is(new DefaultMinesweeperMove(new Point(0, 0))));
+        assertThat(inputStreamMinesweeperPlayer.getMove(null), Matchers.is(new DefaultMinesweeperMove(new Point(0, 0))));
 
-        assertThat(inputStreamMinesweeperPlayer.getMove(), is(new DefaultMinesweeperMove(new Point(0, 1))));
+        assertThat(inputStreamMinesweeperPlayer.getMove(null), is(new DefaultMinesweeperMove(new Point(0, 1))));
 
-        assertThat(inputStreamMinesweeperPlayer.getMove(), is(new DefaultMinesweeperMove(new Point(1, 0))));
+        assertThat(inputStreamMinesweeperPlayer.getMove(null), is(new DefaultMinesweeperMove(new Point(1, 0))));
 
-        assertThat(inputStreamMinesweeperPlayer.getMove(), is(new DefaultMinesweeperMove(new Point(1, 1))));
+        assertThat(inputStreamMinesweeperPlayer.getMove(null), is(new DefaultMinesweeperMove(new Point(1, 1))));
     }
 }

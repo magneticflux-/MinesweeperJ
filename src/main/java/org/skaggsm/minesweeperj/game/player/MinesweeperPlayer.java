@@ -17,11 +17,12 @@
 
 package org.skaggsm.minesweeperj.game.player;
 
+import org.skaggsm.minesweeperj.game.MinesweeperGame;
 import org.skaggsm.minesweeperj.game.MinesweeperMove;
 
 /**
  * @author Mitchell Skaggs
  */
 public interface MinesweeperPlayer {
-    MinesweeperMove getMove();
+    MinesweeperMove getMove(MinesweeperGame minesweeperGame);
 }
