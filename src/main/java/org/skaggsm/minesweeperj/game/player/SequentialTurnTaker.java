@@ -31,13 +31,13 @@ public class SequentialTurnTaker implements TurnTaker {
     private final MinesweeperGame minesweeperGame;
     private final Iterator<MinesweeperPlayer> players;
 
+    public SequentialTurnTaker(MinesweeperGame minesweeperGame, MinesweeperPlayer... players) {
+        this(minesweeperGame, Arrays.asList(players));
+    }
+
     public SequentialTurnTaker(MinesweeperGame minesweeperGame, List<MinesweeperPlayer> players) {
         this.minesweeperGame = minesweeperGame;
         this.players = Iterators.cycle(players);
-    }
-
-    public SequentialTurnTaker(MinesweeperGame minesweeperGame, MinesweeperPlayer... players) {
-        this(minesweeperGame, Arrays.asList(players));
     }
 
     @Override

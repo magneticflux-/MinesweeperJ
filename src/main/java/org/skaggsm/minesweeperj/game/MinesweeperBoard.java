@@ -30,9 +30,9 @@ public interface MinesweeperBoard {
         return getTile(new Point(x, y));
     }
 
+    MinesweeperTile getTile(Point point);
+
     void setBomb(int x, int y);
 
     Set<Point> getAdjacentPoints(int x, int y);
-
-    MinesweeperTile getTile(Point point);
 }

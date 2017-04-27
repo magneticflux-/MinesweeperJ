@@ -95,6 +95,19 @@ public class MinesweeperMove implements Move {
             return this;
         }
 
+        /**
+         * Convenience method. Sets the row and column to which this move will refer.
+         *
+         * @param row    The row to set
+         * @param column The column to set
+         * @return The builder
+         * @throws IllegalArgumentException If {@code row} or {@code column} are < 0
+         */
+        public Builder setCoordinates(@Nonnegative int row, @Nonnegative int column) {
+            this.setRow(row);
+            this.setColumn(column);
+            return this;
+        }
 
         /**
          * Sets the row to which this move will refer.
@@ -123,20 +136,6 @@ public class MinesweeperMove implements Move {
                 throw new IllegalArgumentException("'column' must be >= 0!");
 
             this.column = column;
-            return this;
-        }
-
-        /**
-         * Convenience method. Sets the row and column to which this move will refer.
-         *
-         * @param row    The row to set
-         * @param column The column to set
-         * @return The builder
-         * @throws IllegalArgumentException If {@code row} or {@code column} are < 0
-         */
-        public Builder setCoordinates(@Nonnegative int row, @Nonnegative int column) {
-            this.setRow(row);
-            this.setColumn(column);
             return this;
         }
 

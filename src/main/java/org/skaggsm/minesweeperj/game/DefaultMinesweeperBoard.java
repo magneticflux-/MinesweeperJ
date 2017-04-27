@@ -43,10 +43,6 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
         bombs = new HashSet<>();
     }
 
-    private static int getNthDigit(int number, int base, int n) {
-        return (int) ((number / FastMath.pow(base, n)) % base);
-    }
-
     @Override
     public MinesweeperTile getTile(Point point) {
         if (bombs.contains(point))
@@ -71,6 +67,13 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
     }
 
     @Override
+    public void setBomb(int x, int y) {
+        requireInRange(x, y);
+
+        bombs.add(new Point(x, y));
+    }
+
+    @Override
     public Set<Point> getAdjacentPoints(int x, int y) {
         requireInRange(x, y);
 
@@ -86,13 +89,6 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
             }
         }
         return Collections.unmodifiableSet(points);
-    }
-
-    @Override
-    public void setBomb(int x, int y) {
-        requireInRange(x, y);
-
-        bombs.add(new Point(x, y));
     }
 
     @Override
@@ -141,5 +137,9 @@ public class DefaultMinesweeperBoard implements MinesweeperBoard {
         stringBuilder.append(" ");
 
         return stringBuilder.toString();
+    }
+
+    private static int getNthDigit(int number, int base, int n) {
+        return (int) ((number / FastMath.pow(base, n)) % base);
     }
 }

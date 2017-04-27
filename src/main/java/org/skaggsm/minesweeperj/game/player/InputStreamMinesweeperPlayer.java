@@ -35,13 +35,13 @@ public class InputStreamMinesweeperPlayer implements MinesweeperPlayer {
     private static final Pattern WHITESPACE_COMMA_PATTERN = Pattern.compile("[\\p{javaWhitespace},;]+");
     private final Scanner scanner;
 
+    public InputStreamMinesweeperPlayer(InputStream inputStream) {
+        this(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+    }
+
     public InputStreamMinesweeperPlayer(Readable readable) {
         scanner = new Scanner(readable);
         scanner.useDelimiter(WHITESPACE_COMMA_PATTERN);
-    }
-
-    public InputStreamMinesweeperPlayer(InputStream inputStream) {
-        this(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
     }
 
     @Override

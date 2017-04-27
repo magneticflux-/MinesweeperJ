@@ -32,16 +32,14 @@ public class DefaultMinesweeperMove implements MinesweeperMove {
     }
 
     @Override
-    public String toString() {
-        return "DefaultMinesweeperMove{" +
-                "point=" + point +
-                '}';
-    }
-
-    @Override
     @Nonnull
     public Point getPoint() {
         return point;
+    }
+
+    @Override
+    public int hashCode() {
+        return point.hashCode();
     }
 
     @Override
@@ -55,7 +53,9 @@ public class DefaultMinesweeperMove implements MinesweeperMove {
     }
 
     @Override
-    public int hashCode() {
-        return point.hashCode();
+    public String toString() {
+        return "DefaultMinesweeperMove{" +
+                "point=" + point +
+                '}';
     }
 }
