@@ -46,9 +46,9 @@ public class InputStreamMinesweeperPlayer implements MinesweeperPlayer {
 
     @Override
     public MinesweeperMove getMove(MinesweeperGame minesweeperGame) {
-        int x = scanner.nextInt();
-        int y = scanner.nextInt();
+        int xCoordinate = scanner.nextInt();
+        int yCoordinate = scanner.nextInt();
 
-        return new DefaultMinesweeperMove(new Point(x, y));
+        return new DefaultMinesweeperMove(new Point(xCoordinate, yCoordinate));
     }
 }
