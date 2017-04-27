@@ -15,7 +15,9 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.game;
+package org.skaggsm.minesweeperj.game.player;
+
+import org.skaggsm.minesweeperj.game.MinesweeperMove;
 
 /**
  * @author Mitchell Skaggs

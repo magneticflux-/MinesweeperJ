@@ -15,22 +15,28 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.game;
+package org.skaggsm.minesweeperj.game.player;
+
+import org.skaggsm.minesweeperj.game.DefaultMinesweeperMove;
+import org.skaggsm.minesweeperj.game.MinesweeperMove;
 
 import java.awt.*;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * @author Mitchell Skaggs
  */
 public class InputStreamMinesweeperPlayer implements MinesweeperPlayer {
+    private static final Pattern WHITESPACE_COMMA_PATTERN = Pattern.compile("[\\p{javaWhitespace},;]+");
     private final Scanner scanner;
 
     public InputStreamMinesweeperPlayer(Readable readable) {
         scanner = new Scanner(readable);
+        scanner.useDelimiter(WHITESPACE_COMMA_PATTERN);
     }
 
     public InputStreamMinesweeperPlayer(InputStream inputStream) {

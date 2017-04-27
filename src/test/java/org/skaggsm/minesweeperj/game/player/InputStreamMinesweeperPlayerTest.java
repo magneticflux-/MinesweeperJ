@@ -15,10 +15,12 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.skaggsm.minesweeperj.game;
+package org.skaggsm.minesweeperj.game.player;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+import org.skaggsm.minesweeperj.game.DefaultMinesweeperMove;
 
 import java.awt.*;
 import java.io.StringReader;
@@ -34,15 +36,12 @@ public class InputStreamMinesweeperPlayerTest {
 
     @Before
     public void setUp() {
-        inputStreamMinesweeperPlayer = new InputStreamMinesweeperPlayer(new StringReader("0 0\n"
-                + "0 1\n"
-                + "1 0\n"
-                + "1 1"));
+        inputStreamMinesweeperPlayer = new InputStreamMinesweeperPlayer(new StringReader("0,0  0,1  1,0  1,1"));
     }
 
     @Test
     public void When_GetMoveCalled_Return_CorrectMoves() {
-        assertThat(inputStreamMinesweeperPlayer.getMove(), is(new DefaultMinesweeperMove(new Point(0, 0))));
+        assertThat(inputStreamMinesweeperPlayer.getMove(), Matchers.is(new DefaultMinesweeperMove(new Point(0, 0))));
 
         assertThat(inputStreamMinesweeperPlayer.getMove(), is(new DefaultMinesweeperMove(new Point(0, 1))));
 
