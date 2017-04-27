@@ -14,6 +14,8 @@ engines:
         enabled: false
       com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck:
         enabled: false
+      com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck:
+        enabled: false
   fixme:
     enabled: true
   pmd:
