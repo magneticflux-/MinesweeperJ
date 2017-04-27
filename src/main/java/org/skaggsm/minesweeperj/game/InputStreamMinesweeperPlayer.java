@@ -17,45 +17,31 @@
 
 package org.skaggsm.minesweeperj.game;
 
-import javax.annotation.Nonnull;
 import java.awt.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 /**
  * @author Mitchell Skaggs
  */
-public class DefaultMinesweeperMove implements MinesweeperMove {
-    @Nonnull
-    private final Point point;
+public class InputStreamMinesweeperPlayer implements MinesweeperPlayer {
+    private final Scanner scanner;
 
-    public DefaultMinesweeperMove(@Nonnull Point point) {
-        this.point = point;
+    public InputStreamMinesweeperPlayer(Readable readable) {
+        scanner = new Scanner(readable);
+    }
+
+    public InputStreamMinesweeperPlayer(InputStream inputStream) {
+        this(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
     }
 
     @Override
-    public String toString() {
-        return "DefaultMinesweeperMove{" +
-                "point=" + point +
-                '}';
-    }
+    public MinesweeperMove getMove() {
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
 
-    @Override
-    @Nonnull
-    public Point getPoint() {
-        return point;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DefaultMinesweeperMove that = (DefaultMinesweeperMove) o;
-
-        return point.equals(that.point);
-    }
-
-    @Override
-    public int hashCode() {
-        return point.hashCode();
+        return new DefaultMinesweeperMove(new Point(x, y));
     }
 }
